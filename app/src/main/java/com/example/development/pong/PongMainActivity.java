@@ -33,10 +33,39 @@ public class PongMainActivity extends Activity {
 				.findViewById(R.id.animationSurface);
 		mySurface.setAnimator(new BallAnimator());
 
-		Button changeSizeButton = (Button)findViewById(R.id.changeSizeButton);
-		changeSizeButton.setOnClickListener(new View.OnClickListener() {
+
+		/**
+		 * External Citation
+		 * Date: March 21, 2018
+		 * Problem: Forgot how to deal with buttons
+		 * Resource:https://developer.android.com/guide/topics/ui/controls/button.html
+		 */
+		// Button that allows the Paddle to become smaller
+		Button hardButton = (Button)findViewById(R.id.hardButton);
+		hardButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				Paddle player1 = new Paddle(0, 600);
+				player1.setHEIGHT(300);
+			}
+		});
+
+		// Button that allows the Paddle to become its normal size
+		Button easyButton = (Button)findViewById(R.id.easyButton);
+		easyButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Paddle player1 = new Paddle(0, 500);
+				player1.setHEIGHT(600);
+			}
+		});
+
+		//Button that allows a new ball to be put into play
+		Button newButton = (Button)findViewById(R.id.newBallButton);
+		newButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
 			}
 		});
 	}

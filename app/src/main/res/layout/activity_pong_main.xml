@@ -12,19 +12,30 @@
     </com.example.development.pong.AnimationSurface>
 
     <Button
-        android:id="@+id/changeSizeButton"
+        android:id="@+id/hardButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="Change Paddle Size" />
+        android:layout_toLeftOf="@+id/newBallButton"
+        android:layout_toStartOf="@+id/newBallButton"
+        android:text="Hard Mode" />
 
     <Button
-        android:id="@+id/addNewBallButton"
+        android:id="@+id/newBallButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/changeSizeButton"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
         android:text="Add New Ball" />
+
+    <Button
+        android:id="@+id/easyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/hardButton"
+        android:layout_toStartOf="@+id/hardButton"
+        android:text="Easy Mode" />
 
 </RelativeLayout>

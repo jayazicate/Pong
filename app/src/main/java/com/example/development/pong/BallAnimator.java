@@ -2,29 +2,31 @@ package com.example.development.pong;
 
 import android.graphics.*;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
+
 
 
 /**
- * class that animates a ball repeatedly moving diagonally on
- * simple background
+ * Class that shows a ball that bounces around
  *
  * @author Joshua Azicate
  */
 public class BallAnimator implements Animator {
 
 	// instance variables
-	private int count = 0; // counts the number of logical clock ticks
 	private boolean goBackwards = false; // whether clock is ticking backwards
 	private int ballX; // the position in which the ball is in horizontally
 	private int ballY = 900; // the initial position in which the ball starts
 	private int maxYV = 70; // the maximum velocity in which the ball will go in the y direction
 	private int maxXV = 70; //the maximum velocity in which the ball will go in the x direction
 
+
 	//creates an instance of a Paddle object, setting the initial placement at x=0, y=500
 	Paddle player1 = new Paddle(0,500);
 
 	//creates an instance of a Ball object
-	Ball ball = new Ball(50, ballX, ballY, (int)(Math.random()*maxXV), (int)(Math.random()*maxYV));
+	Ball ball = new Ball(50, ballX+200, ballY, (int)(Math.random()*maxXV), (int)(Math.random()*maxYV));
 
 	/**
 	 * Interval between animation frames: .03 seconds (i.e., about 33 times
@@ -34,7 +36,7 @@ public class BallAnimator implements Animator {
 	 */
 	public int interval() {
 		return 0;
-	}
+	}//interval
 
 	/**
 	 * The background color: a light blue.
@@ -44,7 +46,7 @@ public class BallAnimator implements Animator {
 	public int backgroundColor() {
 		// create/return the background color
 		return Color.rgb(117, 216, 230);
-	}
+	}//backgroundColor
 
 	/**
 	 * Tells the animation whether to go backwards.
@@ -54,7 +56,7 @@ public class BallAnimator implements Animator {
 	public void goBackwards(boolean b) {
 		// set our instance variable
 		goBackwards = b;
-	}
+	}//goBackwards
 
 	/**
 	 * Action to perform on clock tick
@@ -64,39 +66,53 @@ public class BallAnimator implements Animator {
 	public void tick(Canvas g) {
 
 		player1.draw(g);
-		// Determine the pixel position of our ball.  Multiplying by 15
-		// has the effect of moving 15 pixel per frame.  Modding by 600
-		// (with the appropriate correction if the value was negative)
-		// has the effect of "wrapping around" when we get to either end
-		// (since our canvas size is 600 in each dimension).
+		// Determine the pixel position of our ball.  Pixel position is determined by the
+		// current pixel position and the current velocity
 		ballX = (ball.getxPos()+ball.getxV());
 		ballY = (ball.getyPos()+ball.getyV());
 
-		ball.draw(g);
-		ball.setxPos(ballX);
-		ball.setyPos(ballY);
 
+		ball.draw(g); // Calls the draw method that draws the shape of the ball
+		ball.setxPos(ballX); // Sets the default x position of the ball when starting
+		ball.setyPos(ballY); // Sets the default y position of the ball when starting
+
+
+		// If the following condition (hitWallY (hitting either the top or bottom wall) is present,
+		// then the ball will change the direction and speed in the y direction
 		if(hitWallY(g)){
 			ball.setyV(-ball.getyV());
 		}
 
+		// If the following condition (hitWallX (hitting the wall farthest to the right)) is present
+		// then the ball will change the direction and speed in the x direction
 		if(hitWallX(g)){
 			ball.setxV(-ball.getxV());
 		}
 
+		// If the following condition (hitPlayerWall (hitting the wall on the side of player's paddle))
+		// is present, then the ball will reset with new/random parameters
 		if(hitPlayerWall(g)){
-			ball.setxPos((int)(Math.random())*g.getWidth());
-			ball.setyPos((int)(Math.random()*g.getHeight()));
+			ballX = 500;
+			ballY = g.getHeight()/2;
+
+			/*ball.setyPos((int)(Math.random()*g.getHeight()));
 			ball.setxV((int)(Math.random()*maxXV));
-			ball.setyV((int)(Math.random()*maxYV));
+			ball.setyV((int)(Math.random()*maxYV));*/
 		}
 
+		// If the following condition (hitPaddle (hitting the paddle)) is present, then the ball
+		// will bounce in the opposite x direction
 		if(hitPaddle(g)){
 			ball.setxV(-ball.getxV());
 		}
 
-	}
+	}//tick
 
+	/**
+	 * Checks to see if the ball has hit either the top or bottom wall
+	 * @param g the graphics object that we are checking
+	 * @return
+	 */
 	public boolean hitWallY(Canvas g){
 		if(ball.getyPos() >= g.getHeight()){
 			return true;
@@ -104,22 +120,37 @@ public class BallAnimator implements Animator {
 			return true;
 		}
 		return false;
-	}
+	}//hitWallY
 
+	/**
+	 * Checks to see if the ball has hit the right side wall
+	 * @param g the graphics object that we are checking
+	 * @return
+	 */
 	public boolean hitWallX(Canvas g){
 		if(ball.getxPos() >= g.getWidth()){
 			return true;
 		}
 		return false;
-	}
+	}//hitWallX
 
+	/**
+	 * Checks to see if the ball has hit the wall with the paddle
+	 * @param g the graphics object that we are checking
+	 * @return
+	 */
 	public boolean hitPlayerWall(Canvas g){
 		if(ball.getxPos() <= 0){
 			return true;
 		}
 		return false;
-	}
+	}//hitPlayerWall
 
+	/**
+	 * Checks to see if the ball has hit the paddle
+	 * @param g the graphics object that we are checking
+	 * @return
+	 */
 	public boolean hitPaddle(Canvas g){
 		int paddleHeight = player1.getY()+player1.getHEIGHT();
 
@@ -128,9 +159,7 @@ public class BallAnimator implements Animator {
 			return true;
 		}
 		return false;
-	}
-
-
+	}//hitPaddle
 
 
 	/**

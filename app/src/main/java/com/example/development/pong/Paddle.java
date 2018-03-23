@@ -10,17 +10,24 @@ import android.graphics.Paint;
  */
 
 public class Paddle {
-    private int WIDTH = 100, HEIGHT = 600;
+    private static int WIDTH = 100, HEIGHT = 600;
     private int x;
     private int y;
 
+    /**
+     * Constuctor allows us to pass in are starting x and y coordinates to place the paddle
+     * @param initX The initial X coordinate in which we start drawing the paddle
+     * @param initY The initial Y coordinate in which we start drawing the paddle
+     */
     public Paddle(int initX, int initY) {
         this.x = initX;
         this.y = initY;
     }
 
-
-
+    /**
+     * draw method draws the paddle when given a canvas
+     * @param g
+     */
     public void draw(Canvas g){
         Paint paddlePaint = new Paint();
         paddlePaint.setColor(Color.RED);
@@ -28,8 +35,9 @@ public class Paddle {
 
     }
 
-    public int getX() { return x; }
-
+    /*
+    THE FOLLOWING METHODS ARE SETTER AND GETTER METHODS
+     */
     public void setWIDTH(int WIDTH) {
         this.WIDTH = WIDTH;
     }
@@ -37,6 +45,16 @@ public class Paddle {
     public void setHEIGHT(int HEIGHT) {
         this.HEIGHT = HEIGHT;
     }
+
+    public void setY(int y){
+        this.y = y;
+    }
+
+    public void setX(int x){
+        this.x = x;
+    }
+
+    public int getX() { return x; }
 
     public int getY(){
         return y;

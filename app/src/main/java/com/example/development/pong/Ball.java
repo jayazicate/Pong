@@ -1,8 +1,10 @@
 package com.example.development.pong;
 /**
+ * Ball
  *
  * Class that animates a "ball."
  * Created by Joshua Azicate on 3/21/18.
+ * @userID 001874248
  */
 
 

@@ -7,13 +7,16 @@ import java.util.ArrayList;
 
 
 /**
+ * BallAnimator
+ *
  * Class that shows a ball that bounces around
  *
  * @author Joshua Azicate
+ * @userID 001874248
+ * @version March 2018
  */
 public class BallAnimator implements Animator {
 
-	// instance variables
 	private boolean goBackwards = false; // whether clock is ticking backwards
 	private int ballX = 200; // the position in which the ball is in horizontally
 	private int ballY = 900; // the initial position in which the ball starts
@@ -104,6 +107,7 @@ public class BallAnimator implements Animator {
 
 			// If the following condition (hitPlayerWall (hitting the wall on the side of player's paddle))
 			// is present, then the ball will reset with new/random parameters
+			// Also removes the current ball to prompt user to create new ball
 			if (hitPlayerWall(g)) {
 				balls.remove(i);
 				ball.setxPos((int)(Math.random()*g.getWidth()));
@@ -202,11 +206,14 @@ public class BallAnimator implements Animator {
 		{
 			goBackwards = !goBackwards;
 		}
-	}
+	}//onTouch
 
+	/**
+	 * Adds new ball to the ArrayList
+	 */
 	public void addNewBall(){
 		balls.add(firstBall);
-	}
+	}//addNewBall
 
 
 

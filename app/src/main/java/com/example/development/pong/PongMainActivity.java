@@ -2,9 +2,7 @@ package com.example.development.pong;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.Button;
 
 import java.util.ArrayList;
@@ -17,7 +15,9 @@ import java.util.ArrayList;
  * 
  * @author Andrew Nuxoll
  * @author Steven R. Vegdahl
- * @version July 2013
+ * @author Joshua Azicate
+ * @version March 2018
+ * @userID 001874248
  * 
  */
 public class PongMainActivity extends Activity {

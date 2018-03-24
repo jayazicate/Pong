@@ -6,7 +6,13 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 /**
- * Created by Joshua Azicate on 3/19/18.
+ * Paddle
+ *
+ * Class that creates a paddle for the user to control
+ *
+ * @author Joshua Azicate
+ * @userID 001874248
+ * @version March 2018
  */
 
 public class Paddle {

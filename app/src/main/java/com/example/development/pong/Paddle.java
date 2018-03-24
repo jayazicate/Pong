@@ -35,6 +35,7 @@ public class Paddle {
 
     }
 
+
     /*
     THE FOLLOWING METHODS ARE SETTER AND GETTER METHODS
      */

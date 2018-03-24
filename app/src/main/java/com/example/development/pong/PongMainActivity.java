@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 /**
  * PongMainActivity
  * 
@@ -20,18 +22,22 @@ import android.widget.Button;
  */
 public class PongMainActivity extends Activity {
 
+
+	BallAnimator ballAnimator;
+
 	/**
 	 * creates an AnimationSurface containing a TestAnimator.
 	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		ballAnimator = new BallAnimator();
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pong_main);
 
 		// Connect the animation surface with the animator
 		AnimationSurface mySurface = (AnimationSurface) this
 				.findViewById(R.id.animationSurface);
-		mySurface.setAnimator(new BallAnimator());
+		mySurface.setAnimator(ballAnimator);
 
 
 		/**
@@ -65,10 +71,12 @@ public class PongMainActivity extends Activity {
 		newButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-
+				ballAnimator.addNewBall();
 			}
 		});
 	}
+
+
 
 
 }

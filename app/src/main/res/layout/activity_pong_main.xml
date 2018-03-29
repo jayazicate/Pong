@@ -38,4 +38,5 @@
         android:layout_toStartOf="@+id/hardButton"
         android:text="Easy Mode" />
 
+
 </RelativeLayout>

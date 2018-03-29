@@ -5,8 +5,6 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.ArrayList;
-
 /**
  * PongMainActivity
  * 
@@ -74,6 +72,7 @@ public class PongMainActivity extends Activity {
 				ballAnimator.addNewBall();
 			}
 		});
+
 	}
 
 
